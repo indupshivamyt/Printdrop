@@ -1,20 +1,92 @@
-<!-- ✅ Updated HTML with icon-based graphics instead of PNG images --><!DOCTYPE html><html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PrintDotDrop</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: #f5f7fb;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      border-bottom-left-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+      flex-wrap: wrap;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #fdd835;
+    }
+    section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .icon {
+      font-size: 40px;
+      color: #2575fc;
+      background: #e3f2fd;
+      padding: 20px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    h1, h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1rem;
+      color: #555;
+    }
+    .btn {
+      background-color: #2575fc;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 20px;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background-color: #6a11cb;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <nav class="navbar">
-      <div class="logo">
-        <i class="fas fa-print"></i>
-        <span>Print.Drop</span>
-      </div>
-      <ul class="nav-links">
-        <li><a href="#">Home</a></li>
+    <div class="icon"><i class="fas fa-print"></i></div>
+    <h1>PrintDotDrop</h1>
+    <p>Get your documents printed and delivered to your doorstep!</p>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
         <li><a href="#upload">Upload PDF</a></li>
         <li><a href="#order">Order Now</a></li>
         <li><a href="#how">How It Works</a></li>
@@ -22,31 +94,32 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-  </header>  <section class="hero">
-    <div class="welcome">
-      <i class="fas fa-print fa-4x"></i>
-      <h1>Welcome to PrintDotDrop</h1>
-      <p>
-        हम आपके PDF को प्रिंट करके आपके घर तक पहुँचाते हैं। आसान, तेज़ और भरोसेमंद सेवा
-      </p>
-    </div>
-  </section>  <section id="upload" class="upload-section">
+  </header>  <section id="upload">
+    <div class="icon"><i class="fas fa-file-upload"></i></div>
     <h2>Upload PDF</h2>
-    <p>अपना PDF फॉर्म भरें और फाइल अपलोड करें:</p>
+    <p>अपना PDF फ़ॉर्म भरें और फाइल अपलोड करें:</p>
     <button class="btn">Upload Now</button>
-  </section>  <section id="order" class="order-section">
-    <h2><i class="fas fa-file-invoice"></i> Order Delivery</h2>
+  </section>  <section id="order">
+    <div class="icon"><i class="fas fa-truck"></i></div>
+    <h2>Order Delivery</h2>
     <p>प्रिंट ऑर्डर और डिलीवरी जानकारी भरें:</p>
     <button class="btn">Order Now</button>
-  </section>  <section id="how" class="how-it-works">
-    <h2><i class="fas fa-cogs"></i> How It Works</h2>
-    <ol>
+  </section>  <section id="how">
+    <div class="icon"><i class="fas fa-sync-alt"></i></div>
+    <h2>How It Works</h2>
+    <ol style="text-align: left; display: inline-block;">
       <li>आप PDF अपलोड करते हैं।</li>
       <li>हम प्रिंट करते हैं।</li>
       <li>आपके घर तक डिलीवर करते हैं।</li>
     </ol>
-  </section>  <footer>
-    <p>&copy; 2025 PrintDotDrop | Easy, Reliable Document Printing & Delivery</p>
-  </footer>
+  </section>  <section id="about">
+    <div class="icon"><i class="fas fa-info-circle"></i></div>
+    <h2>About Us</h2>
+    <p>We are a small student-led startup dedicated to making document printing and delivery fast, reliable, and affordable for everyone.</p>
+  </section>  <section id="contact">
+    <div class="icon"><i class="fas fa-envelope"></i></div>
+    <h2>Contact</h2>
+    <p>Have any questions or suggestions? Contact us at: <strong>support@printdotdrop.com</strong></p>
+  </section>
 </body>
 </html>
