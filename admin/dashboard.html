@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard | PrintXdrop</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #e3f2fd, #c5cae9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .dashboard {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      width: 90%;
+      max-width: 450px;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #673ab7;
+      margin-bottom: 1rem;
+    }
+
+    .welcome {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      background-color: #673ab7;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #512da8;
+    }
+
+    .small {
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <div class="logo">PrintXdrop</div>
+    <div class="welcome" id="welcome">Welcome, admin!</div>
+    <button onclick="viewOrders()">📄 View Orders</button>
+    <button onclick="logout()">🚪 Logout</button>
+    <div class="small">You're logged in securely with Firebase</div>
+  </div>
+
+  <!-- Firebase Scripts -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB2IL2ZqgJ2mAT-plUqyFlX-fmyWIhesg0",
+      authDomain: "printxdrop-firebase.firebaseapp.com",
+      projectId: "printxdrop-firebase",
+      storageBucket: "printxdrop-firebase.appspot.com",
+      messagingSenderId: "985021931711",
+      appId: "1:985021931711:web:5e993157d009a66436a60a"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const welcomeDiv = document.getElementById("welcome");
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        welcomeDiv.textContent = `Welcome, ${user.email}`;
+      } else {
+        window.location.href = "login.html"; // redirect if not logged in
+      }
+    });
+
+    window.logout = function () {
+      signOut(auth).then(() => {
+        alert("Logged out successfully");
+        window.location.href = "login.html";
+      });
+    };
+
+    window.viewOrders = function () {
+      window.open("https://tally.so/r/w8br2P", "_blank"); // replace with your real form result URL later
+    };
+  </script>
+</body>
+</html>
