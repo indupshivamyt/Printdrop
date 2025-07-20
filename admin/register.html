@@ -1,55 +1,119 @@
-<!-- register.html --><!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Register - Print.Drop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register | PrintXdrop</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #e3f2fd, #c5cae9);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
-      margin: 0;
     }
-    .container {
-      background: #fff;
+
+    .register-box {
+      background-color: white;
       padding: 2rem;
       border-radius: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
       width: 90%;
       max-width: 400px;
+      text-align: center;
     }
-    input {
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #673ab7;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      color: #333;
+      font-size: 1.3rem;
+    }
+
+    input[type="email"], input[type="password"] {
       width: 100%;
-      padding: 0.8rem;
-      margin: 0.5rem 0;
+      padding: 12px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
       border: 1px solid #ccc;
-      border-radius: 10px;
+      font-size: 16px;
     }
-    button {
-      background: #00796b;
-      color: white;
-      padding: 0.8rem;
-      width: 100%;
+
+    .password-box {
+      position: relative;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
       border: none;
-      border-radius: 10px;
       cursor: pointer;
+      color: #555;
     }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      background-color: #673ab7;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
     button:hover {
-      background: #004d40;
+      background-color: #512da8;
+    }
+
+    .link {
+      margin-top: 1rem;
+      font-size: 14px;
+    }
+
+    .link a {
+      color: #673ab7;
+      text-decoration: none;
+    }
+
+    .link a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Register as Print Partner</h2>
-    <input type="email" id="email" placeholder="Email" required />
-    <input type="password" id="password" placeholder="Password" required />
+  <div class="register-box">
+    <div class="logo">PrintXdrop</div>
+    <h2>Create Admin Account</h2>
+    <input type="email" id="email" placeholder="Email Address" />
+    
+    <div class="password-box">
+      <input type="password" id="password" placeholder="Password" />
+      <button class="toggle-password" onclick="togglePassword()">👁️</button>
+    </div>
+    
     <button onclick="register()">Register</button>
-    <p id="message"></p>
-  </div>  <script type="module">
+
+    <div class="link">
+      Already have an account? <a href="login.html">Login here</a>
+    </div>
+  </div>
+
+  <!-- Firebase Scripts -->
+  <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
@@ -57,7 +121,7 @@
       apiKey: "AIzaSyB2IL2ZqgJ2mAT-plUqyFlX-fmyWIhesg0",
       authDomain: "printxdrop-firebase.firebaseapp.com",
       projectId: "printxdrop-firebase",
-      storageBucket: "printxdrop-firebase.firebasestorage.app",
+      storageBucket: "printxdrop-firebase.appspot.com",
       messagingSenderId: "985021931711",
       appId: "1:985021931711:web:5e993157d009a66436a60a"
     };
@@ -68,13 +132,21 @@
     window.register = function () {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
+
       createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          document.getElementById("message").textContent = "✅ Registered successfully!";
+        .then(() => {
+          alert("✅ Registration successful! Please login.");
+          window.location.href = "login.html";
         })
         .catch((error) => {
-          document.getElementById("message").textContent = "❌ " + error.message;
+          alert("❌ Error: " + error.message);
         });
     };
-  </script></body>
+
+    window.togglePassword = function () {
+      const passInput = document.getElementById("password");
+      passInput.type = passInput.type === "password" ? "text" : "password";
+    };
+  </script>
+</body>
 </html>
