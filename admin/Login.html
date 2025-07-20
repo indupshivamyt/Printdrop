@@ -3,98 +3,149 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login | PrintDrop Admin</title>
+  <title>Login | PrintXdrop</title>
   <style>
     body {
-      background: #f0f2f5;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
       margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #e3f2fd, #c5cae9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
-    .container {
-      background: white;
+
+    .login-box {
+      background-color: white;
       padding: 2rem;
       border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      width: 100%;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      width: 90%;
       max-width: 400px;
       text-align: center;
     }
-    h2 {
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #673ab7;
       margin-bottom: 1rem;
     }
-    input {
+
+    h2 {
+      color: #333;
+      font-size: 1.3rem;
+    }
+
+    input[type="email"], input[type="password"] {
       width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border-radius: 10px;
+      padding: 12px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
       border: 1px solid #ccc;
       font-size: 16px;
     }
+
+    .password-box {
+      position: relative;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #555;
+    }
+
     button {
       width: 100%;
-      padding: 10px;
-      background: #0077ff;
+      padding: 12px;
+      margin-top: 10px;
+      background-color: #673ab7;
       color: white;
-      font-size: 16px;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
+      font-size: 16px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: background-color 0.3s;
     }
+
     button:hover {
-      background: #005dc1;
+      background-color: #512da8;
     }
-    .error {
-      color: red;
-      margin-top: 0.5rem;
+
+    .link {
+      margin-top: 1rem;
       font-size: 14px;
+    }
+
+    .link a {
+      color: #673ab7;
+      text-decoration: none;
+    }
+
+    .link a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Login to PrintDrop</h2>
-    <input type="email" id="email" placeholder="Email" required />
-    <input type="password" id="password" placeholder="Password" required />
+  <div class="login-box">
+    <div class="logo">PrintXdrop</div>
+    <h2>Login to Admin Panel</h2>
+    <input type="email" id="email" placeholder="Email Address" />
+    
+    <div class="password-box">
+      <input type="password" id="password" placeholder="Password" />
+      <button class="toggle-password" onclick="togglePassword()">👁️</button>
+    </div>
+    
     <button onclick="login()">Login</button>
-    <div class="error" id="error"></div>
+
+    <div class="link">
+      Don't have an account? <a href="register.html">Sign up here</a>
+    </div>
   </div>
 
+  <!-- Firebase Scripts -->
   <script type="module">
-    // Firebase SDK
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyB2IL2ZqgJ2mAT-plUqyFlX-fmyWIhesg0",
       authDomain: "printxdrop-firebase.firebaseapp.com",
       projectId: "printxdrop-firebase",
-      storageBucket: "printxdrop-firebase.firebasestorage.app",
+      storageBucket: "printxdrop-firebase.appspot.com",
       messagingSenderId: "985021931711",
       appId: "1:985021931711:web:5e993157d009a66436a60a"
     };
 
     const app = initializeApp(firebaseConfig);
-    const auth = getAuth();
+    const auth = getAuth(app);
 
     window.login = function () {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
-      const errorDiv = document.getElementById("error");
 
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          // Redirect to dashboard after successful login
-          window.location.href = "dashboard.html";
+          window.location.href = "dashboard.html"; // Redirect to dashboard
         })
         .catch((error) => {
-          errorDiv.textContent = "Login failed: " + error.message;
+          alert("❌ Error: " + error.message);
         });
-    }
+    };
+
+    window.togglePassword = function () {
+      const passInput = document.getElementById("password");
+      passInput.type = passInput.type === "password" ? "text" : "password";
+    };
   </script>
 </body>
 </html>
