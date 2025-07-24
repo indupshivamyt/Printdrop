@@ -225,6 +225,30 @@
       transition: background-color 0.3s ease;
     }
 
+    /* Highlighted Terms & Conditions link styling */
+    .highlight-link {
+      color: var(--primary);
+      font-weight: bold;
+      text-decoration: underline;
+      transition: color 0.2s, background-color 0.2s;
+      padding: 0.15em 0.5em;
+      border-radius: 4px;
+      background-color: #eaf3ff;
+      box-shadow: 0 1px 5px rgba(0,123,255,0.04);
+    }
+    .highlight-link:hover, .highlight-link:focus {
+      color: #fff;
+      background-color: var(--primary);
+      text-decoration: none;
+    }
+
+    /* Center the Cost Calculator button */
+    .cost-calculator-center {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -248,9 +272,7 @@
           <a href="#about">About Us</a>
           <a href="#services">Services</a>
           <a href="#contact">Contact</a>
-          <a href="https://indupshivamyt.github.io/T-C-Page/" target="_blank">
-            <button class="btn" style="margin-left: 1rem;">T&C</button>
-          </a>
+          <!-- Removed extra T&C button here -->
           <button id="themeToggle" class="btn toggle-theme" onclick="toggleTheme()">Toggle Dark Mode</button>
         </div>
       </nav>
@@ -264,14 +286,15 @@
         <p>Your documents delivered to your doorstep with just a few clicks.</p>
         <a href="https://tally.so/r/w8br2P" class="btn">Upload Now</a>
       </div>
-      
     </section>
 
     <section class="about" id="about">
-      <a class="btn" href="calculator.html">Cost Calculator</a>
+      <div class="cost-calculator-center">
+        <a class="btn" href="calculator.html">Cost Calculator</a>
+      </div>
       <div class="container">
         <h2 class="section-title">About Us</h2>
-        <p>PrintXdrop is on a mission to simplify student printing. We let you upload PDFs from anywhere, and we take care of printing and doorstep delivery—so you can focus on what matters most.</p>
+        <p>PrintXdrop is on a mission to simplify student printing. We let you upload PDFs from anywhere, and we take care of printing and doorstep delivery—so you can focus on what matters most.</p[...]
       </div>
     </section>
 
@@ -314,7 +337,9 @@
     <section class="upload-section">
       <div class="container">
         <h2>Become a Delivery Partner</h2>
-        <p>Join our network and earn ₹20–30 per delivery by carrying print orders back to your area when you visit a print shop for your own needs. You’re not bound to do deliveries—just earn extra when it’s convenient for you!</p>
+        <p>
+          Join our network and earn ₹20–30 per delivery by carrying print orders back to your area when you visit a print shop for your own needs. You’re not bound to do deliveries—just earn whenever it’s convenient!
+        </p>
         <a href="https://tally.so/r/n0q5o9" class="btn">Join as Partner</a>
       </div>
     </section>
@@ -359,7 +384,7 @@
   </main>
 
   <footer>
-    <p>&copy; 2025 PrintXdrop. All rights reserved. <a href="Tnc.html">Terms & Conditions</a></p>
+    <p>&copy; 2025 PrintXdrop. All rights reserved. <a href="Tnc.html" class="highlight-link">Terms & Conditions</a></p>
   </footer>
 
   <script>
@@ -382,4 +407,4 @@
   </script>
 </body>
 
-</html>
+                            </html>
