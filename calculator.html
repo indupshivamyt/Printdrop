@@ -74,6 +74,7 @@
 <body>
   <div class="calculator-box">
     <h1>Print Cost Calculator</h1>
+    <h2>Note👉 Spiral Binding Charges are not included in calculated value</h2>
     <form id="costCalculator">
       <input type="number" id="pages" placeholder="Number of Pages" min="1" required>
       <select id="type">
@@ -99,9 +100,9 @@
 
       let rate = 0;
       if (type === "bw") {
-        rate = side === "single" ? 1 : 0.75;
+        rate = side === "single" ? 1.50 : 0.90;
       } else {
-        rate = side === "single" ? 5 : 4;
+        rate = side === "single" ? 6 : 5;
       }
 
       const cost = pages * rate;
